@@ -1,5 +1,5 @@
 // Breadcrumb.tsx
-import React from 'react';
+import React from "react";
 import {
   Breadcrumb as BreadcrumbUI,
   BreadcrumbItem,
@@ -7,8 +7,8 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { Space } from '@/app/api/clickup/space/route';
-import { List } from '@/app/api/clickup/list/route';
+import { Space } from "@/app/api/clickup/space/route";
+import { List } from "@/app/api/clickup/list/route";
 
 interface BreadcrumbProps {
   space?: Space | null;
@@ -17,7 +17,12 @@ interface BreadcrumbProps {
   onListClick: () => void;
 }
 
-export function Breadcrumb({ space, list, onSpaceClick, onListClick }: BreadcrumbProps) {
+export function Breadcrumb({
+  space,
+  list,
+  onSpaceClick,
+  onListClick,
+}: BreadcrumbProps) {
   return (
     <BreadcrumbUI>
       <BreadcrumbList>

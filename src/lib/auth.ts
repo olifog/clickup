@@ -1,28 +1,29 @@
-
 import NextAuth from "next-auth";
 import clickUp from "next-auth/providers/click-up";
 
 export type MySession = {
   user: {
-    name: string,
-    email: string,
-    id: string,
-    timezone: string,
-    accessToken: string
-  }
-}
+    name: string;
+    email: string;
+    id: string;
+    timezone: string;
+    accessToken: string;
+  };
+};
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  providers: [clickUp({
-    clientId: process.env.AUTH_CLICKUP_CLIENT_ID,
-    clientSecret: process.env.AUTH_CLICKUP_CLIENT_SECRET
-  })],
+  providers: [
+    clickUp({
+      clientId: process.env.AUTH_CLICKUP_CLIENT_ID,
+      clientSecret: process.env.AUTH_CLICKUP_CLIENT_SECRET,
+    }),
+  ],
   callbacks: {
-    async jwt({token, user, profile, account}) {
+    async jwt({ token, user, profile, account }) {
       const profileUser = profile?.user as {
-        email: string,
-        timezone: string
-      }
+        email: string;
+        timezone: string;
+      };
       if (profile && account) {
         token.id = user.id;
         token.name = user.name;
@@ -32,16 +33,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
       return token;
     },
-    async session({session, token, user}) {
+    async session({ session, token }) {
       session.user = {
         name: token.name || "",
         email: token.email || "",
         id: token.id as string,
         timezone: token.timezone as string,
         accessToken: token.accessToken as string,
-        emailVerified: null
-      }
-      return session
-    }
-  }
-})
+        emailVerified: null,
+      };
+      return session;
+    },
+  },
+});

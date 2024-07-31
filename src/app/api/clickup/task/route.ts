@@ -1,5 +1,5 @@
-
-import { NextRequest } from "next/server"
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { NextRequest } from "next/server";
 
 export interface Task {
   id: string;
@@ -10,17 +10,20 @@ export interface Task {
   description: string;
   url: string;
   status: {
-
-  }
+    id: string;
+    status: string;
+    type: string;
+    color: string;
+  };
 }
 
 export type TaskResponse = {
   tasks: Task[];
-}
+};
 
 export async function GET(req: NextRequest, res: Response) {
-  const listId = req.nextUrl.searchParams.get('listId')
-  const url = `https://api.clickup.com/api/v2/list/${listId}/task`
+  const listId = req.nextUrl.searchParams.get("listId");
+  const url = `https://api.clickup.com/api/v2/list/${listId}/task`;
   const data = await fetch(url, {
     method: "GET",
     headers: {
@@ -32,9 +35,9 @@ export async function GET(req: NextRequest, res: Response) {
 }
 
 export async function PUT(req: NextRequest, res: Response) {
-  const taskId = req.nextUrl.searchParams.get('taskId')
-  const url = `https://api.clickup.com/api/v2/task/${taskId}`
-  const reqData = await req.json()
+  const taskId = req.nextUrl.searchParams.get("taskId");
+  const url = `https://api.clickup.com/api/v2/task/${taskId}`;
+  const reqData = await req.json();
   const data = await fetch(url, {
     method: "PUT",
     headers: {
@@ -48,9 +51,9 @@ export async function PUT(req: NextRequest, res: Response) {
 }
 
 export async function POST(req: NextRequest, res: Response) {
-  const listId = req.nextUrl.searchParams.get('listId')
-  const url = `https://api.clickup.com/api/v2/list/${listId}/task`
-  const reqData = await req.json()
+  const listId = req.nextUrl.searchParams.get("listId");
+  const url = `https://api.clickup.com/api/v2/list/${listId}/task`;
+  const reqData = await req.json();
   const data = await fetch(url, {
     method: "POST",
     headers: {

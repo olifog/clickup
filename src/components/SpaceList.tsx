@@ -1,6 +1,5 @@
-import { Space } from '@/app/api/clickup/space/route';
-import React from 'react';
-
+import { Space } from "@/app/api/clickup/space/route";
+import React from "react";
 
 interface SpaceListProps {
   spaces: Space[];

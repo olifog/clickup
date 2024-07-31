@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server"
+import { NextRequest } from "next/server";
 
 export interface Space {
   id: string;
@@ -8,11 +8,12 @@ export interface Space {
 
 export type SpaceResponse = {
   spaces: Space[];
-}
+};
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function GET(req: NextRequest, res: Response) {
-  const teamId = req.nextUrl.searchParams.get('teamId')
-  const url = `https://api.clickup.com/api/v2/team/${teamId}/space`
+  const teamId = req.nextUrl.searchParams.get("teamId");
+  const url = `https://api.clickup.com/api/v2/team/${teamId}/space`;
   const data = await fetch(url, {
     method: "GET",
     headers: {

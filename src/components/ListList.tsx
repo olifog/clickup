@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 import { Button } from "@/components/ui/button";
-import { List } from '@/app/api/clickup/list/route';
+import { List } from "@/app/api/clickup/list/route";
 
 interface ListListProps {
   lists: List[];

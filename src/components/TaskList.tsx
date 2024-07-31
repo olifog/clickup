@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 import { Button } from "@/components/ui/button";
-import { Task } from '@/app/api/clickup/task/route';
+import { Task } from "@/app/api/clickup/task/route";
 
 interface TaskListProps {
   tasks: Task[];
@@ -9,12 +9,16 @@ interface TaskListProps {
 }
 
 export function TaskList({ tasks, onTaskEdit, onTaskClose }: TaskListProps) {
+  console.log(tasks)
   return (
     <div className="flex flex-col w-128 font-semibold text-xs space-y-2">
       {tasks.map((task) => (
-        <div key={task.id} className="p-2 border border-gray-300 flex justify-between items-center space-x-2">
+        <div
+          key={task.id}
+          className="p-2 border border-gray-300 flex justify-between items-center space-x-2"
+        >
           <h2>{task.name}</h2>
-          <div className='w-30 flex-nowrap'>
+          <div className="w-30 flex-nowrap">
             <Button
               variant="outline"
               size="sm"
@@ -23,15 +27,13 @@ export function TaskList({ tasks, onTaskEdit, onTaskClose }: TaskListProps) {
             >
               Edit
             </Button>
-            {task.status !== 'closed' && (
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => onTaskClose(task.id)}
-              >
-                Close
-              </Button>
-            )}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => onTaskClose(task.id)}
+            >
+              Close
+            </Button>
           </div>
         </div>
       ))}

@@ -1,4 +1,3 @@
-
 export interface Team {
   id: string;
   name: string;
@@ -8,8 +7,9 @@ export interface Team {
 
 export type TeamResponse = {
   teams: Team[];
-}
+};
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function GET(req: Request, res: Response) {
   const url = "https://api.clickup.com/api/v2/team";
   const data = await fetch(url, {

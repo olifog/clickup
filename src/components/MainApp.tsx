@@ -9,7 +9,7 @@ import { Breadcrumb } from "@/components/Breadcrumb";
 import { SpaceList } from "@/components/SpaceList";
 import { TaskList } from "@/components/TaskList";
 import { ListList } from "@/components/ListList";
-import { TaskForm } from "@/components/TaskForm";
+import { TaskData, TaskForm } from "@/components/TaskForm";
 import { Task, TaskResponse } from "@/app/api/clickup/task/route";
 import { TeamResponse } from "@/app/api/clickup/team/route";
 import { SpaceResponse } from "@/app/api/clickup/space/route";
@@ -67,7 +67,7 @@ export default function TaskManagement() {
       : null
   );
 
-  const handleCreateTask = async (taskData: any) => {
+  const handleCreateTask = async (taskData: TaskData) => {
     if (!selectedListId) return;
 
     try {
@@ -91,17 +91,20 @@ export default function TaskManagement() {
     }
   };
 
-  const handleUpdateTask = async (taskData: any) => {
+  const handleUpdateTask = async (taskData: TaskData) => {
     if (!editingTask) return;
     try {
-      const response = await fetch(`/api/clickup/task?taskId=${editingTask.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `${session.user.accessToken}`,
-        },
-        body: JSON.stringify(taskData),
-      });
+      const response = await fetch(
+        `/api/clickup/task?taskId=${editingTask.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `${session.user.accessToken}`,
+          },
+          body: JSON.stringify(taskData),
+        }
+      );
 
       if (response.ok) {
         mutateTasks();
