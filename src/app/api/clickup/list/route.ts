@@ -1,8 +1,17 @@
 import { NextRequest } from "next/server"
 
+export interface List {
+  id: string;
+  name: string;
+}
+
+export type ListResponse = {
+  lists: List[];
+}
+
 export async function GET(req: NextRequest, res: Response) {
   const spaceId = req.nextUrl.searchParams.get('spaceId')
-  const url = `https://api.clickup.com/api/v2/space/${spaceId}/folder`
+  const url = `https://api.clickup.com/api/v2/space/${spaceId}/list`
   const data = await fetch(url, {
     method: "GET",
     headers: {

@@ -1,5 +1,15 @@
 import { NextRequest } from "next/server"
 
+export interface Space {
+  id: string;
+  name: string;
+  color: string;
+}
+
+export type SpaceResponse = {
+  spaces: Space[];
+}
+
 export async function GET(req: NextRequest, res: Response) {
   const teamId = req.nextUrl.searchParams.get('teamId')
   const url = `https://api.clickup.com/api/v2/team/${teamId}/space`
@@ -9,6 +19,7 @@ export async function GET(req: NextRequest, res: Response) {
       Authorization: `${req.headers.get("Authorization")}`,
     },
   });
+
   const jsonData = await data.json();
   return Response.json(jsonData);
 }

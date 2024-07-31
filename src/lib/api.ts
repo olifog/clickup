@@ -1,9 +1,13 @@
 
-export const fetcher = async ({url, accessToken}: {
+export const fetcher = async ({url, accessToken, params}: {
   url: string
   accessToken: string
+  params?: Record<string, string>
 }) => {
-  const res = await fetch(url, {
+  const builtURL = params ? `${url}?${new URLSearchParams(params)}` : url
+
+  const res = await fetch(builtURL, {
+    method: 'GET',
     headers: {
       Authorization: accessToken,
     },
