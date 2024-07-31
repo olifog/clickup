@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import useSWR from "swr";
 import { User } from "@/components/User";
-import { Breadcrumb } from "@/components/BreadCrumb";
+import { Breadcrumb } from "@/components/Breadcrumb";
 import { SpaceList } from "@/components/SpaceList";
 import { TaskList } from "@/components/TaskList";
 import { ListList } from "@/components/ListList";
