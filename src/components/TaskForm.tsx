@@ -21,7 +21,7 @@ export interface TaskData {
   time_estimate: number;
   start_date_time: boolean;
   due_date_time: boolean;
-  assignees: string[];
+  assignees: number[];
 }
 
 export function TaskForm({ task, onSubmit, onCancel }: TaskFormProps) {
@@ -62,7 +62,7 @@ export function TaskForm({ task, onSubmit, onCancel }: TaskFormProps) {
       time_estimate: parseInt(timeEstimate) * 60 * 1000,
       start_date_time: true,
       due_date_time: true,
-      assignees: session?.user.id ? [session.user.id] : [],
+      assignees: session?.user.id ? [parseInt(session.user.id)] : [],
     });
   };
 
