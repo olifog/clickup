@@ -23,9 +23,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       const profileUser = profile?.user as {
         email: string;
         timezone: string;
+        id: string;
       };
       if (profile && account) {
-        token.id = user.id;
+        token.id = profileUser.id;
         token.name = user.name;
         token.email = profileUser.email;
         token.timezone = profileUser.timezone;

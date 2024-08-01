@@ -52,6 +52,9 @@ export function TaskForm({ task, onSubmit, onCancel }: TaskFormProps) {
     );
   }, [task]);
 
+  console.log('task', task)
+  console.log('session', session)
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSubmit({
