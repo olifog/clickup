@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Task } from "@/app/api/clickup/task/route";
 import { DateTimePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
+import { useSession } from "next-auth/react";
 
 interface TaskFormProps {
   task?: Task | null;
@@ -20,6 +21,7 @@ export interface TaskData {
   time_estimate: number;
   start_date_time: boolean;
   due_date_time: boolean;
+  assignees: string[];
 }
 
 export function TaskForm({ task, onSubmit, onCancel }: TaskFormProps) {
@@ -36,6 +38,7 @@ export function TaskForm({ task, onSubmit, onCancel }: TaskFormProps) {
       ? (parseInt(task.time_estimate) / 1000 / 60).toString()
       : ""
   );
+  const {data: session} = useSession();
 
   useEffect(() => {
     setName(task?.name || "");
@@ -59,6 +62,7 @@ export function TaskForm({ task, onSubmit, onCancel }: TaskFormProps) {
       time_estimate: parseInt(timeEstimate) * 60 * 1000,
       start_date_time: true,
       due_date_time: true,
+      assignees: session?.user.id ? [session.user.id] : [],
     });
   };
 
